@@ -1,0 +1,15 @@
+
+DOCKER_IMAGE=ddzialak/rpi-openalpr-net
+DATA_VOLUMES='/mnt/data:/mnt/data:ro'
+CONTAINER_NAME=alpr-service
+SERVICE_PORT=23432
+
+get_volumes_option() {
+    param=""
+    for volume in $DATA_VOLUMES ;
+    do
+        param="$param -v $volume"
+    done
+    echo -n $param
+}
+

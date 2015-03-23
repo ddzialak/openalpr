@@ -1,4 +1,6 @@
-from ubuntu:14.04
+#from ubuntu:14.04
+from resin/rpi-raspbian
+
 
 # Install prerequisites
 run apt-get update && apt-get install -y \
@@ -29,6 +31,11 @@ run make
 # Install the binaries/libraries to your local system (prefix is /usr)
 run make install
 
-workdir /data
+run apt-get -y install python-psutil
 
-entrypoint ["alpr"]
+workdir /
+
+EXPOSE 23432
+
+entrypoint ["/srv/openalpr/scripts/alpr_pipes2net.py"]
+

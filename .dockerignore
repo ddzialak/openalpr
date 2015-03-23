@@ -1,2 +1,7 @@
 .git
 Dockerfile
+.dockerignore
+scripts/build-image.sh
+scripts/restart-service.sh
+scripts/test-image.sh
+
