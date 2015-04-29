@@ -90,8 +90,8 @@ def wait_for_connection(data_processor):
         conn, addr = s.accept()
         print ('Connected by', addr)
         data = conn.recv(1024)
-        if not data: break
-        conn.send(data_processor(str(data).strip()+'\n'))
+        if data:
+            conn.send(data_processor(str(data).strip()+'\n'))
         conn.close()
     
 def process(cmd):
@@ -109,6 +109,15 @@ def process(cmd):
     print ("Has response:", resp)
     return resp
 
+
 restart()
-wait_for_connection(process)
+while 1:
+    try:
+        wait_for_connection(process)
+    except KeyboardInterrupt:
+        print "exiting..."
+        break
+    except Exception as ex:
+        print ("Ops: %s" % str(ex))
+        print ("Restarting server...")
 

@@ -13,5 +13,5 @@ then
     ( set -x; docker rm $CONTAINER_NAME )
 fi
 
-docker run -d --name "${CONTAINER_NAME}" `get_volumes_option` ${DOCKER_IMAGE}
+docker run -d -v /tmp:/tmp --name "${CONTAINER_NAME}" `get_volumes_option` ${DOCKER_IMAGE}
 
