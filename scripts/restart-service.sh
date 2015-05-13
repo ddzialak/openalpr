@@ -2,7 +2,7 @@
 
 set -e
 
-source "$(dirname '$0')/config"
+source "$(dirname $0)/config"
 
 if docker ps | grep -q -E " $CONTAINER_NAME *$";
 then
